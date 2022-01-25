@@ -1,0 +1,20 @@
+<main>
+  <h1>Form</h1>
+  <!--
+    [(value)] (two way databiding) só funciona pq o event emitter no componente yes-no
+    se chama valueChange.
+    Se não, deveria ter: (valueChange)="yesNoAnswer = $event"
+
+    ngSubmit não da refresh se der erro no método submit, diferente de apenas 'submit'
+  -->
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <!-- Daria pra usar ngModel pois componente agora implementa o controlValueAccessor -->
+    <!-- [appDisableControl]="false" -> Diretiva e propriedade tem o mesmo nome -->
+    <app-yes-no-button-group
+      [appDisableControl]="false"
+      formControlName="yesNoAnswer"
+      label="Are you good enough in Angular?">
+    </app-yes-no-button-group>
+    <button>Submit</button>
+  </form>
+</main>
